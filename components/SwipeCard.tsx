@@ -2,6 +2,7 @@ import testImage from "@/assets/images/Home/test-bg.jpg";
 import { ThemedView } from "./ThemedView";
 import { Image, StyleSheet } from "react-native";
 import { ThemedText } from "./ThemedText";
+import { CustomColors } from "@/constants/Colors";
 
 export default function SwipeCard() {
   return (
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 200,
     padding: 10,
-    backgroundColor: "#e3dada",
+    backgroundColor: CustomColors.grey,
   },
   accountNameText: {
     fontSize: 18,
