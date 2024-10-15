@@ -17,7 +17,9 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <Header />
       <ThemedView style={styles.content}>
-        <ThemedView style={{ alignItems: "flex-end" }}>
+        <ThemedView
+          style={{ alignItems: "flex-end", backgroundColor: "transparent" }}
+        >
           <Link href="/info">
             <Feather name="info" size={24} color="black" />
           </Link>
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 32,
     gap: 16,
+    backgroundColor: "#F2F2F2",
   },
   titleContainer: {
     flexDirection: "row",
@@ -51,5 +54,6 @@ const styles = StyleSheet.create({
   swipeContainer: {
     flex: 1,
     justifyContent: "center",
+    backgroundColor: "transparent",
   },
 });
