@@ -1,34 +1,30 @@
 import testImage from "@/assets/images/Home/test-bg.jpg";
 import { ThemedView } from "./ThemedView";
 import { Image, StyleSheet } from "react-native";
-import { ThemedText } from "./ThemedText";
 import { CustomColors } from "@/constants/Colors";
 import { InstagramFooter, InstagramHeader } from "./SwipeCard/InstagramCard";
+import { XFooter, XHeader } from "./SwipeCard/XCard";
 
 export default function SwipeCard() {
-  /*
-  <ThemedView style={styles.container}>
-      <Image source={testImage} style={styles.image} />
-      <ThemedView style={styles.desc}>
-        <ThemedText style={styles.accountNameText}>Account Name</ThemedText>
-        <ThemedText style={styles.descText}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-          semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis
-          aliquam nunc.
-        </ThemedText>
-      </ThemedView>
-    </ThemedView>
-  */
+  const type: string = "x";
 
   return (
     <ThemedView style={styles.container}>
-      <InstagramHeader />
+      {type === "instagram" ? (
+        <InstagramHeader />
+      ) : (
+        <XHeader descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis aliquam nunc." />
+      )}
       <Image source={testImage} style={styles.image} />
-      <InstagramFooter
-        descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
+      {type === "instagram" ? (
+        <InstagramFooter
+          descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
           semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis
           aliquam nunc."
-      />
+        />
+      ) : (
+        <XFooter />
+      )}
     </ThemedView>
   );
 }
