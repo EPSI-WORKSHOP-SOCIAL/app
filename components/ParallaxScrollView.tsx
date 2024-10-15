@@ -15,7 +15,10 @@ type Props = PropsWithChildren<{
   withoutHeader?: boolean;
 }>;
 
-export default function ParallaxScrollView({ children, withoutHeader = false }: Props) {
+export default function ParallaxScrollView({
+  children,
+  withoutHeader = false,
+}: Props) {
   const colorScheme = useColorScheme() ?? "light";
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);

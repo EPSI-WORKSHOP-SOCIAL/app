@@ -5,6 +5,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { StyleSheet } from "react-native";
 import { useState } from "react";
+import HistoryList from "@/components/HistoryList";
 
 export default function HistoryScreen() {
   const [selectedFilter, setSelectedFilter] = useState(0);
@@ -23,6 +24,7 @@ export default function HistoryScreen() {
             selectedFilter={selectedFilter}
             onFilterChange={onFilterChange}
           />
+          <HistoryList />
         </ThemedView>
       </ThemedView>
     </ThemedView>
