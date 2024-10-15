@@ -8,6 +8,8 @@ import { Swiper } from "rn-swiper-list";
 import { useCallback } from "react";
 import SwipeCard from "@/components/SwipeCard";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Feather from "@expo/vector-icons/Feather";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
   const renderCard = useCallback((i: number) => {
@@ -16,30 +18,21 @@ export default function HomeScreen() {
 
   return (
     <ThemedView style={styles.container}>
+      <ThemedView style={{ alignItems: "flex-end" }}>
+        <Link href="/info">
+          <Feather name="info" size={24} color="black" />
+        </Link>
+      </ThemedView>
       <GestureHandlerRootView style={styles.swipeContainer}>
-        <Swiper data={[0, 0, 0]} renderCard={renderCard} />
+        <Swiper
+          data={[0, 0, 0]}
+          renderCard={renderCard}
+          cardStyle={{ height: "100%", width: "100%" }}
+        />
       </GestureHandlerRootView>
     </ThemedView>
   );
 }
-
-/*
-<ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-  <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-*/
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +47,6 @@ const styles = StyleSheet.create({
   },
   swipeContainer: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
   },
 });
