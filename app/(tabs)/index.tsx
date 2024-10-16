@@ -9,6 +9,7 @@ import { Link } from "expo-router";
 import Header from "@/components/Header";
 import { Socials } from "@/constants/Types";
 import { CustomColors } from "@/constants/Colors";
+import SwipeTutorial from "@/components/SwipeTutorial";
 
 const FAKE_SWIPE_DATA: { type: Socials }[] = [
   {
@@ -31,6 +32,7 @@ export default function HomeScreen() {
     <ThemedView style={styles.container}>
       <Header />
       <ThemedView style={styles.content}>
+        <SwipeTutorial />
         <ThemedView
           style={{ alignItems: "flex-end", backgroundColor: "transparent" }}
         >
@@ -68,5 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "transparent",
+    position: "relative",
   },
 });

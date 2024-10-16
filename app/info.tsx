@@ -29,7 +29,7 @@ export default function InfoScreen() {
   return (
     <ParallaxScrollView contentGap={10} withoutHeader>
       {FAKE_MORE_INFOS.map((_, i) => (
-        <InfoLine name={_.name} value={_.value} />
+        <InfoLine key={i} name={_.name} value={_.value} />
       ))}
     </ParallaxScrollView>
   );
