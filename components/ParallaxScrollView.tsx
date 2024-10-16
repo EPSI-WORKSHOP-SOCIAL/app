@@ -24,7 +24,7 @@ export default function ParallaxScrollView({
   headerImage,
   headerContent,
   headerBackgroundColor,
-  contentGap = 0
+  contentGap = 0,
   withoutHeader = false,
 }: Props) {
   const colorScheme = useColorScheme() ?? "light";
