@@ -1,12 +1,22 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
 
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
+import { LogBox } from "react-native";
+import { useAuth } from "@clerk/clerk-expo";
+
+LogBox.ignoreLogs(['Clerk: ...']);
+
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+    const { isSignedIn } = useAuth();
+    const colorScheme = useColorScheme();
+
+    if(!isSignedIn) {
+        return <Redirect href="/(auth)/" />;
+    }
 
   return (
     <Tabs
