@@ -52,23 +52,20 @@ export default function ParallaxScrollView({
     };
   });
 
-  /*
-  <Animated.View
-          style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
-            headerAnimatedStyle,
-          ]}>
-          {headerImage && headerImage}
-          {headerContent && headerContent}
-        </Animated.View>
-  */
-
-  // TODO: use withoutHeader
-
   return (
     <ThemedView style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+        {!withoutHeader && (
+          <Animated.View
+            style={[
+                styles.header,
+                { backgroundColor: headerBackgroundColor[colorScheme] },
+                headerAnimatedStyle,
+            ]}>
+            {headerImage && headerImage}
+            {headerContent && headerContent}
+          </Animated.View>
+        )}
         <ThemedView style={[styles.content, {gap: contentGap ?? 16}]}>{children}</ThemedView>
       </Animated.ScrollView>
     </ThemedView>
