@@ -1,28 +1,44 @@
 import { Redirect, Tabs } from "expo-router";
-import React from "react";
-
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
+import { Colors, CustomColors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { LogBox } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 
-LogBox.ignoreLogs(['Clerk: ...']);
+LogBox.ignoreLogs(["Clerk: ..."]);
 
 export default function TabLayout() {
-    const { isSignedIn } = useAuth();
-    const colorScheme = useColorScheme();
+  const { isSignedIn } = useAuth();
+  const colorScheme = useColorScheme();
 
-    if(!isSignedIn) {
-        return <Redirect href="/(auth)/" />;
-    }
+  if (!isSignedIn) {
+    return <Redirect href="/(auth)/" />;
+  }
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        headerStyle: {
+          backgroundColor: "transparent",
+        },
+        tabBarStyle: {
+          height: 60,
+          paddingBottom: 6,
+          backgroundColor: CustomColors.grey,
+          shadowColor: "transparent",
+          borderColor: "transparent",
+        },
+        headerBackgroundContainerStyle: {
+          backgroundColor: "transparent",
+        },
+        tabBarLabelStyle: {
+          fontSize: 16,
+          gap: 2,
+          fontFamily: "AfacadFluxMedium",
+        },
       }}
     >
       <Tabs.Screen
@@ -30,10 +46,7 @@ export default function TabLayout() {
         options={{
           title: "Accueil",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"home"} color={color} />
           ),
         }}
       />
@@ -42,22 +55,16 @@ export default function TabLayout() {
         options={{
           title: "Historique",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "bar-chart" : "bar-chart-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"bar-chart"} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
+          title: "Profil",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"user"} color={color} />
           ),
         }}
       />
