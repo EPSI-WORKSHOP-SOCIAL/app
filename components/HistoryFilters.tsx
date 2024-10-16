@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   filter: {
-    borderWidth: 2,
+    borderWidth: 4,
     borderColor: CustomColors.grey,
     borderRadius: 10,
     paddingHorizontal: 5,

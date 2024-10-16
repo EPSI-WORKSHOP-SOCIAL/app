@@ -27,7 +27,7 @@ export default function TabLayout() {
         tabBarStyle: {
           height: 60,
           paddingBottom: 6,
-          backgroundColor: CustomColors.grey,
+          backgroundColor: "white",
           shadowColor: "transparent",
           borderColor: "transparent",
         },
@@ -60,7 +60,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="profile"
         options={{
           title: "Profil",
           tabBarIcon: ({ color, focused }) => (

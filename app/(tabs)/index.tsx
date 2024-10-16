@@ -53,13 +53,11 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: CustomColors.grey,
   },
   content: {
     flex: 1,
     padding: 32,
     gap: 16,
-    backgroundColor: CustomColors.grey,
   },
   titleContainer: {
     flexDirection: "row",

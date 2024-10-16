@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
   divider: {
-    height: 2,
+    height: 4,
     width: "100%",
     backgroundColor: CustomColors.grey,
   },
