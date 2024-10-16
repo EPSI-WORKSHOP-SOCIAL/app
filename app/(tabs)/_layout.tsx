@@ -1,6 +1,4 @@
 import { Redirect, Tabs } from "expo-router";
-import React from "react";
-
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
@@ -23,6 +21,15 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          paddingBottom: 6,
+        },
+        tabBarLabelStyle: {
+          fontWeight: 700,
+          fontSize: 13,
+          gap: 2,
+        },
       }}
     >
       <Tabs.Screen
@@ -30,10 +37,7 @@ export default function TabLayout() {
         options={{
           title: "Accueil",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"home"} color={color} />
           ),
         }}
       />
@@ -42,22 +46,16 @@ export default function TabLayout() {
         options={{
           title: "Historique",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "bar-chart" : "bar-chart-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"bar-chart"} color={color} />
           ),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
+          title: "Profil",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
-              color={color}
-            />
+            <TabBarIcon name={"user"} color={color} />
           ),
         }}
       />
