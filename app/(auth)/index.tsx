@@ -11,6 +11,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import * as Haptics from 'expo-haptics';
 import Animated, { FadeInUp } from "react-native-reanimated";
+import ThemedModal from "@/components/ThemedModal";
 
 const login = () => {
     const { signIn, setActive, isLoaded } = useSignIn();
@@ -20,14 +21,12 @@ const login = () => {
 
     const [emailAddress, setEmailAddress] = useState('');
     const [password, setPassword] = useState('');
+    const [sessionId, setSessionId] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
-    useEffect(() => {
-        console.log(emailAddress, password);
-        
-    }, [emailAddress, password]);
+    const [modalIsVisible, setModalIsVisible] = useState(false);
 
     const onSignInPress = useCallback(async () => {
         Haptics.selectionAsync();
@@ -46,31 +45,56 @@ const login = () => {
             });
 
             if (signInAttempt.status === 'complete') {
-                await setActive({ session: signInAttempt.createdSessionId });
                 Haptics.notificationAsync(
                     Haptics.NotificationFeedbackType.Success
                 );
-                alert('ok');
-                router.replace('/');
+                setSessionId(signInAttempt.createdSessionId as string);
+                setModalIsVisible(true);
             } else {
                 Haptics.notificationAsync(
                     Haptics.NotificationFeedbackType.Error
                 );
-                // const error = JSON.stringify(signInAttempt, null, 2);
-                // setErrorMessage(signInAttempt.errors[0].message);
             }
         } catch (err: any) {
             Haptics.notificationAsync(
                 Haptics.NotificationFeedbackType.Error
             );
             setErrorMessage(err.errors[0].message);
-            console.error(JSON.stringify(err, null, 2));
         } finally {
             setIsLoading(false);
         }
     }, [isLoaded, emailAddress, password]);
 
-	return (
+    const confirmSignIn = async () => {
+        if(sessionId == '') {
+            setModalIsVisible(false);
+            return;
+        }
+
+        if(!setActive) {
+            setErrorMessage('Une erreur est survenue...');
+            return;
+        }
+
+        setIsLoading(true);
+        Haptics.selectionAsync();
+        
+        try {
+            await setActive({ session: sessionId });
+            router.replace('/');
+        } catch(err: any) {
+            Haptics.notificationAsync(
+                Haptics.NotificationFeedbackType.Error
+            );
+            setErrorMessage(err.errors[0].message);
+        } finally {
+            setSessionId('');
+            setIsLoading(false);
+            setModalIsVisible(false);
+        }
+    }
+
+	return <>
 		<ParallaxScrollView
             headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
             headerContent={(
@@ -108,7 +132,18 @@ const login = () => {
                 <ThemedButton onPress={() => router.navigate('/signin')} disabled={true}>Créer un compte</ThemedButton>
             </ThemedView>
 		</ParallaxScrollView>
-	);
+
+        <ThemedModal isVisible={modalIsVisible} setIsVisible={setModalIsVisible} allowClose={false}>
+            <ThemedView style={{ gap: 25 }}>
+                <ThemedView style={{ gap: 10 }}>
+                    <ThemedText type="title">⚠️ Contenu sensible</ThemedText>
+                    <ThemedText type="defaultSemiBold">Ce contenu peut inclure des éléments sensibles réservés à un public averti.</ThemedText>
+                    <ThemedText lightColor="#888888">En poursuivant votre navigation sur l'application vous confirmez avoir plus de 18 ans.</ThemedText>
+                </ThemedView>
+                <ThemedButton onPress={confirmSignIn} isLoading={isLoading}>Accéder à l'application</ThemedButton>
+            </ThemedView>
+        </ThemedModal>
+	</>;
 };
 
 export default login;
