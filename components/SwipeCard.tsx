@@ -38,6 +38,14 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "relative",
     flex: 1,
+    shadowColor: "black",
+    shadowRadius: 4,
+    shadowOpacity: 0.3,
+    shadowOffset: {
+      height: 8,
+      width: 8,
+    },
+    elevation: 10,
   },
   image: {
     resizeMode: "cover",
