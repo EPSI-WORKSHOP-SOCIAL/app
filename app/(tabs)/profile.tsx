@@ -2,11 +2,17 @@ import Feather from "@expo/vector-icons/Feather";
 import { StyleSheet, Pressable } from "react-native";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useClerk } from "@clerk/clerk-expo";
 
 export default function ProfileScreen() {
+  const { signOut } = useClerk();
+
   return (
     <ThemedView style={styles.container}>
-      <Pressable style={styles.button}>
+      <Pressable
+        style={styles.button}
+        onPress={() => signOut({ redirectUrl: "/" })}
+      >
         <Feather name="log-out" size={24} color="white" />
         <ThemedText style={styles.textButton}>Se déconnecter</ThemedText>
       </Pressable>
@@ -27,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     alignItems: "center",
     flexDirection: "row",
-    gap: 10
+    gap: 10,
   },
   textButton: {
     color: "white",
