@@ -7,10 +7,23 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import Header from "@/components/Header";
+import { Socials } from "@/constants/Types";
+
+const FAKE_SWIPE_DATA: { type: Socials }[] = [
+  {
+    type: "Instagram",
+  },
+  {
+    type: "X",
+  },
+  {
+    type: "Instagram",
+  },
+];
 
 export default function HomeScreen() {
-  const renderCard = useCallback((i: number) => {
-    return <SwipeCard />;
+  const renderCard = useCallback(({ type }: { type: Socials }) => {
+    return <SwipeCard type={type} />;
   }, []);
 
   return (
@@ -26,7 +39,7 @@ export default function HomeScreen() {
         </ThemedView>
         <GestureHandlerRootView style={styles.swipeContainer}>
           <Swiper
-            data={[0, 0, 0]}
+            data={FAKE_SWIPE_DATA}
             renderCard={renderCard}
             cardStyle={{ height: "100%", width: "100%" }}
           />

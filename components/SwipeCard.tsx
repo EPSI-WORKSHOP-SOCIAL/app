@@ -4,19 +4,22 @@ import { Image, StyleSheet } from "react-native";
 import { CustomColors } from "@/constants/Colors";
 import { InstagramFooter, InstagramHeader } from "./SwipeCard/InstagramCard";
 import { XFooter, XHeader } from "./SwipeCard/XCard";
+import { Socials } from "@/constants/Types";
 
-export default function SwipeCard() {
-  const type: string = "x";
+interface SwipeCardProps {
+  type: Socials;
+}
 
+export default function SwipeCard({ type }: SwipeCardProps) {
   return (
     <ThemedView style={styles.container}>
-      {type === "instagram" ? (
+      {type === "Instagram" ? (
         <InstagramHeader />
       ) : (
         <XHeader descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis aliquam nunc." />
       )}
       <Image source={testImage} style={styles.image} />
-      {type === "instagram" ? (
+      {type === "Instagram" ? (
         <InstagramFooter
           descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
           semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis
