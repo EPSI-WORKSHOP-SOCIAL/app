@@ -1,30 +1,33 @@
 import { Redirect, Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
+import { Colors, CustomColors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { LogBox } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 
-LogBox.ignoreLogs(['Clerk: ...']);
+LogBox.ignoreLogs(["Clerk: ..."]);
 
 export default function TabLayout() {
-    const { isSignedIn } = useAuth();
-    const colorScheme = useColorScheme();
+  const { isSignedIn } = useAuth();
+  const colorScheme = useColorScheme();
 
-    if(!isSignedIn) {
-        return <Redirect href="/(auth)/" />;
-    }
+  if (!isSignedIn) {
+    return <Redirect href="/(auth)/" />;
+  }
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
+        headerStyle: {
+          backgroundColor: "transparent",
+        },
         tabBarStyle: {
           height: 60,
           paddingBottom: 6,
-          backgroundColor: "transparent",
+          backgroundColor: CustomColors.grey,
           shadowColor: "transparent",
           borderColor: "transparent",
         },
@@ -32,9 +35,9 @@ export default function TabLayout() {
           backgroundColor: "transparent",
         },
         tabBarLabelStyle: {
-          fontWeight: 700,
-          fontSize: 13,
+          fontSize: 16,
           gap: 2,
+          fontFamily: "AfacadFluxMedium",
         },
       }}
     >

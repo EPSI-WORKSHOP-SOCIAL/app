@@ -37,11 +37,13 @@ const styles = StyleSheet.create({
   default: {
     fontSize: 16,
     lineHeight: 24,
+    fontFamily: "AfacadFlux"
   },
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
     fontWeight: "600",
+    fontFamily: "AfacadFluxMedium"
   },
   title: {
     fontSize: 32,

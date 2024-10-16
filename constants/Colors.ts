@@ -12,7 +12,7 @@ export const Colors = {
     background: "#fff",
     tint: tintColorLight,
     icon: "#687076",
-    tabIconDefault: "#687076",
+    tabIconDefault: "#BCC3D0",
     tabIconSelected: tintColorLight,
   },
   dark: {
@@ -27,5 +27,6 @@ export const Colors = {
 
 // WIP: Not affected by dark/light theming
 export const CustomColors = {
-  grey: "#e3dada",
+  grey: "#F3F5FA",
+  purple: "#9747FF",
 };

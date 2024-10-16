@@ -8,6 +8,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import Header from "@/components/Header";
 import { Socials } from "@/constants/Types";
+import { CustomColors } from "@/constants/Colors";
 
 const FAKE_SWIPE_DATA: { type: Socials }[] = [
   {
@@ -34,7 +35,7 @@ export default function HomeScreen() {
           style={{ alignItems: "flex-end", backgroundColor: "transparent" }}
         >
           <Link href="/info">
-            <Feather name="info" size={24} color="black" />
+            <Feather name="info" size={24} color="#8B929F" />
           </Link>
         </ThemedView>
         <GestureHandlerRootView style={styles.swipeContainer}>
@@ -52,12 +53,13 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: CustomColors.grey,
   },
   content: {
     flex: 1,
     padding: 32,
     gap: 16,
-    backgroundColor: "#F2F2F2",
+    backgroundColor: CustomColors.grey,
   },
   titleContainer: {
     flexDirection: "row",

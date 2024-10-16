@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
       width: 8,
     },
     elevation: 10,
+    zIndex: 20,
   },
   image: {
     resizeMode: "cover",
