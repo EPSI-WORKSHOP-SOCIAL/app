@@ -64,6 +64,13 @@ export default function RootLayout() {
                         <Stack.Screen name="index" options={{ headerShown: false }} />
                         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+                        <Stack.Screen
+                          name="info"
+                          options={{
+                            presentation: "transparentModal",
+                            headerTitle: "Plus d'informations",
+                          }}
+                        />
                         <Stack.Screen name="+not-found" />
                     </Stack>
 				</ThemeProvider>
