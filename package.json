@@ -17,6 +17,7 @@
   "dependencies": {
     "@clerk/clerk-expo": "^2.2.25",
     "@expo/vector-icons": "^14.0.2",
+    "@jonny/touchable-scale": "^1.0.2",
     "@react-navigation/native": "^6.0.2",
     "@types/react-native-autocomplete-input": "^5.1.4",
     "expo": "~51.0.28",

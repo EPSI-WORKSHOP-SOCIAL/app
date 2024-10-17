@@ -1,5 +1,6 @@
+import TouchableScale from "@jonny/touchable-scale";
 import { PropsWithChildren } from "react";
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, useColorScheme } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, useColorScheme } from "react-native";
 
 type Props = PropsWithChildren<{
     theme?: 'default' | 'primary';
@@ -14,7 +15,7 @@ const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false,
 	const backgroundColor = { default: { light: '#1D3D47', dark: '#A1CEDC' }, primary: { light: '#A1CEDC', dark: '#1D3D47' } };
 	const textColor = { default: { light: '#eceef5', dark: '#434343' }, primary: { light: '#434343', dark: '#eceef5' } };
 
-	return <TouchableOpacity
+	return <TouchableScale
         style={[styles.touchable, {
             backgroundColor: backgroundColor[theme][colorScheme]
         }]}
@@ -35,7 +36,7 @@ const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false,
                 {children}
             </Text>
         )}
-    </TouchableOpacity>;
+    </TouchableScale>;
 };
 
 export default ThemedButton;

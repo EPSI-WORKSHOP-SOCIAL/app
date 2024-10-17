@@ -1,8 +1,6 @@
 import { Href, Link } from "expo-router";
 import { PropsWithChildren } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, useColorScheme, View } from "react-native";
-import { AutocompleteProps } from "react-native-autocomplete-input";
-import Animated, { interpolateColor, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated";
+import { StyleSheet, Text, useColorScheme, View } from "react-native";
 
 type Props = PropsWithChildren<{
     href: Href<string | object>;
