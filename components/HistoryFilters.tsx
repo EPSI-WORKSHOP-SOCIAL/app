@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet } from "react-native";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
-import { CustomColors } from "@/constants/Colors";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface HistoryFiltersProps {
   selectedFilter: number;
@@ -14,6 +14,7 @@ export default function HistoryFilters({
   selectedFilter,
   onFilterChange,
 }: HistoryFiltersProps) {
+  const backgroundColor = useThemeColor({}, "grey");
   return (
     <ThemedView style={styles.container}>
       {FILTERS_LIST.map((_, i) => (
@@ -22,7 +23,8 @@ export default function HistoryFilters({
             styles.filter,
             {
               backgroundColor:
-                selectedFilter === i ? CustomColors.grey : "transparent",
+                selectedFilter === i ? backgroundColor : "transparent",
+              borderColor: backgroundColor,
             },
           ]}
           key={i}
@@ -42,7 +44,6 @@ const styles = StyleSheet.create({
   },
   filter: {
     borderWidth: 4,
-    borderColor: CustomColors.grey,
     borderRadius: 10,
     paddingHorizontal: 5,
     paddingVertical: 2,

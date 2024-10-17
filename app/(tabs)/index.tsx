@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
+import { ThemedSafeArea, ThemedView } from "@/components/ThemedView";
 import { Swiper } from "rn-swiper-list";
 import { useCallback } from "react";
 import SwipeCard from "@/components/SwipeCard";
@@ -8,7 +8,6 @@ import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import Header from "@/components/Header";
 import { Socials } from "@/constants/Types";
-import { CustomColors } from "@/constants/Colors";
 import SwipeTutorial from "@/components/SwipeTutorial";
 
 const FAKE_SWIPE_DATA: { type: Socials }[] = [
@@ -29,7 +28,7 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedSafeArea style={styles.container}>
       <Header />
       <ThemedView style={styles.content}>
         <SwipeTutorial />
@@ -48,7 +47,7 @@ export default function HomeScreen() {
           />
         </GestureHandlerRootView>
       </ThemedView>
-    </ThemedView>
+    </ThemedSafeArea>
   );
 }
 

@@ -2,8 +2,8 @@ import { StyleSheet, ScrollView } from "react-native";
 import { Fragment } from "react";
 import { ThemedView } from "./ThemedView";
 import { ThemedText } from "./ThemedText";
-import { CustomColors } from "@/constants/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 function ListItem({
   date,
@@ -16,7 +16,7 @@ function ListItem({
   number: string;
   status: string;
 }) {
-    const isFinished = status === "finished";
+  const isFinished = status === "finished";
 
   return (
     <ThemedView style={styles.listContainer}>
@@ -57,6 +57,7 @@ const FAKE_LIST = [
 ];
 
 export default function HistoryList() {
+  const backgroundColor = useThemeColor({}, "grey");
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
       <ThemedView style={styles.header}>
@@ -67,7 +68,9 @@ export default function HistoryList() {
       </ThemedView>
       {FAKE_LIST.map((_, i) => (
         <Fragment key={i}>
-          <ThemedView style={styles.divider}></ThemedView>
+          <ThemedView
+            style={[styles.divider, { backgroundColor }]}
+          ></ThemedView>
           <ListItem
             social={_.social}
             date={_.date}
@@ -94,7 +97,6 @@ const styles = StyleSheet.create({
   divider: {
     height: 4,
     width: "100%",
-    backgroundColor: CustomColors.grey,
   },
   listContainer: {
     flexDirection: "row",

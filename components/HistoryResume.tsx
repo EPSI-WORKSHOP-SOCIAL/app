@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
 import { ThemedView } from "./ThemedView";
-import { CustomColors } from "@/constants/Colors";
 import { ThemedText } from "./ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function HistoryResume() {
+  const backgroundColor = useThemeColor({}, "grey");
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor }]}>
       <ThemedView style={styles.header}>
         <ThemedText type="title">6.52 $</ThemedText>
         <ThemedText style={styles.limit}> / 10 $</ThemedText>
@@ -18,7 +19,6 @@ export default function HistoryResume() {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
-    backgroundColor: CustomColors.grey,
     gap: 6,
     padding: 10,
   },

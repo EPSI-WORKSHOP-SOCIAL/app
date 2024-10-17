@@ -3,25 +3,32 @@ import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { LinearGradient } from "expo-linear-gradient";
-import { CustomColors } from "@/constants/Colors";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
 import { useEffect } from "react";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function SwipeTutorial() {
   const offset = useSharedValue<number>(0);
-
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: offset.value }],
   }));
+  const backgroundColor = useThemeColor({}, "grey");
 
+  /*
   useEffect(() => {
-    const id = setTimeout(() => ((offset.value = withSpring(500)), 3000));
-    return () => clearTimeout(id);
+    //const id = setTimeout(() => ((offset.value = withSpring(500)), 8000));
+    //return () => clearTimeout(id);
   }, []);
+  */
+
+  const onTap = () => {
+    const id = setTimeout(() => ((offset.value = withSpring(500)), 8000));
+    return () => clearTimeout(id);
+  };
 
   return (
     <Animated.View
@@ -33,7 +40,7 @@ export default function SwipeTutorial() {
           right: 0,
           bottom: 0,
           backgroundColor: "transparent",
-          zIndex: 10,
+          zIndex: 15,
         },
         animatedStyles,
       ]}
@@ -52,7 +59,7 @@ export default function SwipeTutorial() {
             </ThemedView>
           </ThemedView>
           <ThemedView
-            style={{ width: 3, backgroundColor: CustomColors.grey }}
+            style={{ width: 3, backgroundColor: backgroundColor }}
           ></ThemedView>
           <ThemedView style={styles.directionBlock}>
             <MaterialIcons name="swipe-right" size={24} color="black" />
@@ -63,7 +70,7 @@ export default function SwipeTutorial() {
           </ThemedView>
         </ThemedView>
         <ThemedView
-          style={{ height: 3, backgroundColor: CustomColors.grey }}
+          style={{ height: 3, backgroundColor: backgroundColor }}
         ></ThemedView>
         <ThemedView style={styles.directionBlock}>
           <MaterialIcons name="swipe-up" size={24} color="black" />
