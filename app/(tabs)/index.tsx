@@ -85,7 +85,6 @@ export default function HomeScreen() {
 	return (
 		<ThemedView style={styles.container}>
 			<Header />
-            <ThemedText>{errorReviewRequest}</ThemedText>
 			<ThemedView style={styles.content}>
                 <SwipeTutorial />
                 {loadingPostRequest ? <ActivityIndicator /> : <>

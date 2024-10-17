@@ -32,9 +32,10 @@ const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false,
             <ThemedText style={{
                 color: textColor[theme][colorScheme],
                 textAlign: 'center',
-                fontSize: 15,
+                fontSize: 16,
                 fontWeight: '500',
-                lineHeight: 15
+                lineHeight: 16,
+                fontFamily: 'AfacadFluxSemiBold'
             }}>
                 {children}
             </ThemedText>
