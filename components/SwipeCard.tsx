@@ -1,18 +1,19 @@
 import testImage from "@/assets/images/Home/test-bg.jpg";
 import { ThemedView } from "./ThemedView";
 import { Image, StyleSheet } from "react-native";
-import { CustomColors } from "@/constants/Colors";
 import { InstagramFooter, InstagramHeader } from "./SwipeCard/InstagramCard";
 import { XFooter, XHeader } from "./SwipeCard/XCard";
 import { Socials } from "@/constants/Types";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface SwipeCardProps {
   type: Socials;
 }
 
 export default function SwipeCard({ type }: SwipeCardProps) {
+  const shadowColor = useThemeColor({}, "shadow");
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { shadowColor }]}>
       {type === "Instagram" ? (
         <InstagramHeader />
       ) : (
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "relative",
     flex: 1,
-    shadowColor: "black",
     shadowRadius: 4,
     shadowOpacity: 0.3,
     shadowOffset: {
@@ -52,21 +52,5 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     width: "100%",
     flex: 1,
-  },
-  desc: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: 200,
-    padding: 10,
-    backgroundColor: CustomColors.grey,
-  },
-  accountNameText: {
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  descText: {
-    fontSize: 16,
   },
 });

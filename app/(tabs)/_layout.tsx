@@ -1,6 +1,6 @@
 import { Redirect, Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors, CustomColors } from "@/constants/Colors";
+import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { LogBox } from "react-native";
@@ -27,7 +27,7 @@ export default function TabLayout() {
         tabBarStyle: {
           height: 60,
           paddingBottom: 6,
-          backgroundColor: CustomColors.grey,
+          backgroundColor: Colors[colorScheme ?? "light"].background,
           shadowColor: "transparent",
           borderColor: "transparent",
         },
@@ -60,7 +60,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="profile"
         options={{
           title: "Profil",
           tabBarIcon: ({ color, focused }) => (
