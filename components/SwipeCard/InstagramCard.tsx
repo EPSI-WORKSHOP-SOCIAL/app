@@ -6,6 +6,7 @@ import instagramComment from "@/assets/images/Home/SwipeCard/instagram/comment.p
 import instagramShare from "@/assets/images/Home/SwipeCard/instagram/share.png";
 import instagramBookmark from "@/assets/images/Home/SwipeCard/instagram/bookmark.png";
 import { Image, StyleSheet } from "react-native";
+import { Colors } from "@/constants/Colors";
 
 export function InstagramHeader() {
   return (
@@ -22,9 +23,19 @@ export function InstagramFooter({ descText }: { descText: string }) {
   return (
     <ThemedView style={styles.footer}>
       <ThemedView
-        style={{ flexDirection: "row", justifyContent: "space-between" }}
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          backgroundColor: "transparent",
+        }}
       >
-        <ThemedView style={{ flexDirection: "row", gap: 5 }}>
+        <ThemedView
+          style={{
+            flexDirection: "row",
+            gap: 5,
+            backgroundColor: "transparent",
+          }}
+        >
           <Image source={instagramLike} style={styles.icon} />
           <Image source={instagramComment} style={styles.icon} />
           <Image source={instagramShare} style={styles.icon} />
@@ -42,6 +53,7 @@ const styles = StyleSheet.create({
     height: 60,
     justifyContent: "center",
     paddingHorizontal: 15,
+    backgroundColor: "white",
   },
   icon: {
     width: 24,
@@ -54,6 +66,7 @@ const styles = StyleSheet.create({
     zIndex: 10,
     gap: 5,
     paddingVertical: 10,
+    backgroundColor: "white",
   },
   accountName: {
     fontWeight: 600,
@@ -61,5 +74,6 @@ const styles = StyleSheet.create({
   descText: {
     fontSize: 14,
     lineHeight: 18,
+    color: Colors["light"].text,
   },
 });

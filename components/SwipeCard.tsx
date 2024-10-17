@@ -4,14 +4,16 @@ import { Image, StyleSheet } from "react-native";
 import { InstagramFooter, InstagramHeader } from "./SwipeCard/InstagramCard";
 import { XFooter, XHeader } from "./SwipeCard/XCard";
 import { Socials } from "@/constants/Types";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface SwipeCardProps {
   type: Socials;
 }
 
 export default function SwipeCard({ type }: SwipeCardProps) {
+  const shadowColor = useThemeColor({}, "shadow");
   return (
-    <ThemedView style={styles.container}>
+    <ThemedView style={[styles.container, { shadowColor }]}>
       {type === "Instagram" ? (
         <InstagramHeader />
       ) : (
@@ -37,7 +39,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "relative",
     flex: 1,
-    shadowColor: "black",
     shadowRadius: 4,
     shadowOpacity: 0.3,
     shadowOffset: {

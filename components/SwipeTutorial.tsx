@@ -18,17 +18,12 @@ export default function SwipeTutorial() {
   }));
   const backgroundColor = useThemeColor({}, "grey");
 
-  /*
   useEffect(() => {
-    //const id = setTimeout(() => ((offset.value = withSpring(500)), 8000));
-    //return () => clearTimeout(id);
-  }, []);
-  */
-
-  const onTap = () => {
-    const id = setTimeout(() => ((offset.value = withSpring(500)), 8000));
+    const id = setTimeout(() => {
+      offset.value = withSpring(1080, { velocity: 30, stiffness: 10 });
+    }, 3500);
     return () => clearTimeout(id);
-  };
+  }, []);
 
   return (
     <Animated.View
