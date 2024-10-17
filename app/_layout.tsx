@@ -20,6 +20,7 @@ import {
   useClerk,
 } from "@clerk/clerk-expo";
 import { LogBox } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -73,24 +74,26 @@ export default function RootLayout() {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <ClerkLoaded>
-        <ThemeProvider
-          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-        >
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="info"
-              options={{
-                headerShown: true,
-                presentation: "transparentModal",
-                headerTitle: "Plus d'informations",
-              }}
-            />
-            <Stack.Screen name="+not-found" />
-          </Stack>
-        </ThemeProvider>
+        <GestureHandlerRootView>
+            <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+            >
+            <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+                <Stack.Screen
+                name="info"
+                options={{
+                    headerShown: true,
+                    presentation: "transparentModal",
+                    headerTitle: "Plus d'informations",
+                }}
+                />
+                <Stack.Screen name="+not-found" />
+            </Stack>
+            </ThemeProvider>
+        </GestureHandlerRootView>
       </ClerkLoaded>
     </ClerkProvider>
   );

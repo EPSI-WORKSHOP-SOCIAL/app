@@ -1,15 +1,17 @@
 import TouchableScale from "@jonny/touchable-scale";
 import { PropsWithChildren } from "react";
 import { ActivityIndicator, StyleSheet, Text, useColorScheme } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { ThemedText } from "./ThemedText";
 
-type Props = PropsWithChildren<{
+export type ThemedButtonProps = PropsWithChildren<{
     theme?: 'default' | 'primary';
     onPress?: () => void;
     isLoading?: boolean;
     disabled?: boolean;
 }>;
 
-const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false, disabled = false }: Props) => {
+const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false, disabled = false }: ThemedButtonProps) => {
 	const colorScheme = useColorScheme() ?? 'light';
 
 	const backgroundColor = { default: { light: '#1D3D47', dark: '#A1CEDC' }, primary: { light: '#A1CEDC', dark: '#1D3D47' } };
@@ -27,14 +29,16 @@ const ThemedButton = ({ theme = 'default', children, onPress, isLoading = false,
         {isLoading ? (
             <ActivityIndicator />
         ) : (
-            <Text style={{
+            <ThemedText style={{
                 color: textColor[theme][colorScheme],
                 textAlign: 'center',
-                fontSize: 15,
-                fontWeight: '500'
+                fontSize: 16,
+                fontWeight: '500',
+                lineHeight: 16,
+                fontFamily: 'AfacadFluxSemiBold'
             }}>
                 {children}
-            </Text>
+            </ThemedText>
         )}
     </TouchableScale>;
 };
@@ -43,14 +47,12 @@ export default ThemedButton;
 
 const styles = StyleSheet.create({
 	touchable: {
-		height: 50,
-        fontSize: 15,
         fontWeight: '500',
 		paddingLeft: 16,
+        paddingVertical: 15,
 		borderRadius: 10,
 		paddingRight: 16,
 		justifyContent: 'center',
-		borderCurve: 'continuous',
-        textAlign: 'center'
+		borderCurve: 'continuous'
 	},
 });

@@ -21,7 +21,7 @@ export default function SwipeTutorial() {
   useEffect(() => {
     const id = setTimeout(() => {
       offset.value = withSpring(1080, { velocity: 30, stiffness: 10 });
-    }, 3500);
+    }, 5000);
     return () => clearTimeout(id);
   }, []);
 

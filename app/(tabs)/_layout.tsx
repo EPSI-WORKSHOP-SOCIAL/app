@@ -5,12 +5,15 @@ import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { LogBox } from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 LogBox.ignoreLogs(["Clerk: ..."]);
 
 export default function TabLayout() {
   const { isSignedIn } = useAuth();
   const colorScheme = useColorScheme();
+
+  const insets = useSafeAreaInsets();
 
   if (!isSignedIn) {
     return <Redirect href="/(auth)/" />;
@@ -25,8 +28,8 @@ export default function TabLayout() {
           backgroundColor: "transparent",
         },
         tabBarStyle: {
-          height: 60,
-          paddingBottom: 6,
+          height: 60 + insets.bottom,
+          paddingBottom: insets.bottom,
           backgroundColor: Colors[colorScheme ?? "light"].background,
           shadowColor: "transparent",
           borderColor: "transparent",

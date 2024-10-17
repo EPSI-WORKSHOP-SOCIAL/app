@@ -8,23 +8,24 @@ import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface SwipeCardProps {
   type: Socials;
+  imageUrl: string;
+  content: string;
 }
 
-export default function SwipeCard({ type }: SwipeCardProps) {
+export default function SwipeCard({ type, imageUrl, content }: SwipeCardProps) {
   const shadowColor = useThemeColor({}, "shadow");
+
   return (
     <ThemedView style={[styles.container, { shadowColor }]}>
       {type === "Instagram" ? (
         <InstagramHeader />
       ) : (
-        <XHeader descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis aliquam nunc." />
+        <XHeader descText={content} />
       )}
-      <Image source={testImage} style={styles.image} />
+      <Image source={{ uri: imageUrl }} style={styles.image} />
       {type === "Instagram" ? (
         <InstagramFooter
-          descText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
-          semper libero, eu sagittis enim. Ut quis mi turpis. Aenean quis
-          aliquam nunc."
+          descText={content}
         />
       ) : (
         <XFooter />
