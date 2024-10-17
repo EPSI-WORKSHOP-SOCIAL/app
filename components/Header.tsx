@@ -3,14 +3,20 @@ import { Bar } from "react-native-progress";
 import { StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ThemedText } from "./ThemedText";
-import { CustomColors } from "@/constants/Colors";
 import Feather from "@expo/vector-icons/Feather";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function Header() {
   const insets = useSafeAreaInsets();
+  const backgroundColor = useThemeColor({}, "primary");
 
   return (
-    <ThemedView style={[styles.container, { paddingTop: insets.top }]}>
+    <ThemedView
+      style={[
+        styles.container,
+        { paddingTop: insets.top, backgroundColor: backgroundColor },
+      ]}
+    >
       <ThemedView style={styles.block}>
         <Feather name="image" size={24} color="#F3F5FA" />
         <ThemedText style={styles.title}>10</ThemedText>
@@ -29,8 +35,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 70,
-    backgroundColor: "#5581FE",
+    paddingBottom: 10,
     justifyContent: "space-between",
     flexDirection: "row",
     gap: 8,
@@ -49,6 +54,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "AfacadFluxMedium",
     lineHeight: 30,
-    color: "#F3F5FA"
+    color: "#F3F5FA",
   },
 });

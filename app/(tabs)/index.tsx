@@ -1,5 +1,5 @@
 import { ActivityIndicator, StyleSheet } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
+import { ThemedSafeArea, ThemedView } from "@/components/ThemedView";
 import { Swiper } from "rn-swiper-list";
 import { useCallback, useEffect, useState } from "react";
 import SwipeCard from "@/components/SwipeCard";
@@ -8,7 +8,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { Link } from "expo-router";
 import Header from "@/components/Header";
 import { Socials } from "@/constants/Types";
-import { CustomColors } from "@/constants/Colors";
+import SwipeTutorial from "@/components/SwipeTutorial";
 import useAxios from "@/hooks/useAxios";
 
 const FAKE_SWIPE_DATA: { type: Socials }[] = [
@@ -40,9 +40,10 @@ export default function HomeScreen() {
 	}, []);
 
 	return (
-		<ThemedView style={styles.container}>
+		<ThemedSafeArea style={styles.container}>
 			<Header />
 			<ThemedView style={styles.content}>
+                <SwipeTutorial />
                 {loading ? <ActivityIndicator /> : <>
                     <ThemedView style={{ alignItems: "flex-end", backgroundColor: "transparent" }}>
                         <Link href="/info">
@@ -58,29 +59,28 @@ export default function HomeScreen() {
                     </GestureHandlerRootView>
                 </>}
 			</ThemedView>
-		</ThemedView>
+		</ThemedSafeArea>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: CustomColors.grey,
-	},
-	content: {
-		flex: 1,
-		padding: 32,
-		gap: 16,
-		backgroundColor: CustomColors.grey,
-	},
-	titleContainer: {
-		flexDirection: "row",
-		alignItems: "center",
-		gap: 8,
-	},
-	swipeContainer: {
-		flex: 1,
-		justifyContent: "center",
-		backgroundColor: "transparent",
-	},
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    padding: 32,
+    gap: 16,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  swipeContainer: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "transparent",
+    position: "relative",
+  },
 });

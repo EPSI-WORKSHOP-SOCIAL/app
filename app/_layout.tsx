@@ -83,6 +83,7 @@ export default function RootLayout() {
             <Stack.Screen
               name="info"
               options={{
+                headerShown: true,
                 presentation: "transparentModal",
                 headerTitle: "Plus d'informations",
               }}
