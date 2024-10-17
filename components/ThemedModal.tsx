@@ -3,6 +3,7 @@ import Modal from "react-native-modal";
 import { useColorScheme } from "../hooks/useColorScheme";
 import { ThemedView } from "./ThemedView";
 import { ReactElement } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type Props = {
     isVisible: boolean;
@@ -15,6 +16,7 @@ type Props = {
 const ThemedModal = ({isVisible, setIsVisible, position = "flex-end", children, allowClose = true}: Props) => {
     const colorScheme = useColorScheme() ?? 'light';
     const backgroundColor = { light: "#ffffff", dark: "#1F1F1F" };
+    const insets = useSafeAreaInsets();
 
     return (
         <Modal
@@ -27,7 +29,7 @@ const ThemedModal = ({isVisible, setIsVisible, position = "flex-end", children, 
             avoidKeyboard
         >
             <ThemedView
-                style={[styles.body, { backgroundColor: backgroundColor[colorScheme] }, !allowClose && { paddingTop: 25 }]}
+                style={[styles.body, { backgroundColor: backgroundColor[colorScheme] }, !allowClose && { paddingTop: 25 }, position == 'flex-end' && { paddingBottom: 45 + insets.bottom }]}
             >
                 {allowClose && <View style={[styles.close, { backgroundColor: colorScheme == 'light' ? "#00000033" : "#404040" }]} />}
                 {children}
@@ -44,7 +46,6 @@ const styles = StyleSheet.create({
     },
     body: {
         padding: 25,
-        paddingBottom: 35,
         paddingTop: 40,
         borderRadius: 20,
     },

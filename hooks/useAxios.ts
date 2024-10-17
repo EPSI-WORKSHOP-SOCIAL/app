@@ -9,10 +9,10 @@ interface FetchDataParams {
 	body?: any;
 }
 
-const useAxios = () => {
-	const [data, setData] = useState(null);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(false);
+const useAxios = <T = any>() => {
+    const [data, setData] = useState<T | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const { getToken } = useAuth();
 
@@ -20,19 +20,20 @@ const useAxios = () => {
 		setLoading(true);
 		setError(null);
 
-        const url = `${process.env.API_URL}/${uri}`;
+        const url = `${process.env.EXPO_PUBLIC_API_URL}/${uri}`;
 
 		try {
             const token = await getToken();
 
             options = {
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': token
                 },
                 ...options
             };
-
-			const response: AxiosResponse = await axios({
+            
+			const response: AxiosResponse<T> = await axios({
 				url,
 				method,
 				...options,
